@@ -4,9 +4,10 @@ import styles from '../card-styles.module.css'
 
 interface AttackRowProps {
   attack: Attack
+  blackAndWhite?: boolean
 }
 
-export function AttackRow({ attack }: AttackRowProps) {
+export function AttackRow({ attack, blackAndWhite }: AttackRowProps) {
   if (!attack.name && !attack.damage) return null
 
   return (
@@ -14,7 +15,7 @@ export function AttackRow({ attack }: AttackRowProps) {
       <div className={styles.attackEnergy}>
         {attack.energyCost.map((cost, i) =>
           Array.from({ length: cost.count }, (_, j) => (
-            <EnergyIcon key={`${i}-${j}`} type={cost.type} />
+            <EnergyIcon key={`${i}-${j}`} type={cost.type} blackAndWhite={blackAndWhite} />
           ))
         )}
       </div>

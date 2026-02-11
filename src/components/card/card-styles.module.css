@@ -2,8 +2,8 @@
   width: 744px;
   height: 1039px;
   border-radius: 24px;
-  border: 10px solid var(--card-primary);
-  background: linear-gradient(180deg, var(--card-light) 0%, #fff 40%, var(--card-light) 100%);
+  border: 10px solid var(--card-fill-primary);
+  background: linear-gradient(180deg, var(--card-fill-light) 0%, #fff 40%, var(--card-fill-light) 100%);
   font-family: 'Gill Sans', 'Trebuchet MS', system-ui, sans-serif;
   position: relative;
   overflow: hidden;
@@ -37,7 +37,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 8px 14px;
-  background: linear-gradient(135deg, var(--card-primary), var(--card-secondary));
+  background: linear-gradient(135deg, var(--card-fill-primary), var(--card-fill-secondary));
   border-radius: 10px;
   color: white;
   margin-bottom: 8px;
@@ -75,7 +75,7 @@
 .imageArea {
   width: 100%;
   height: 380px;
-  border: 5px solid var(--card-secondary);
+  border: 5px solid var(--card-fill-secondary);
   border-radius: 10px;
   overflow: hidden;
   margin-bottom: 10px;

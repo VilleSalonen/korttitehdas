@@ -10,6 +10,7 @@ import styles from './card-styles.module.css'
 
 interface CardFrontProps {
   card: CardData
+  blackAndWhite?: boolean
 }
 
 const EVOLUTION_LABELS: Record<string, string> = {
@@ -19,9 +20,9 @@ const EVOLUTION_LABELS: Record<string, string> = {
 }
 
 export const CardFront = forwardRef<HTMLDivElement, CardFrontProps>(
-  ({ card }, ref) => {
+  ({ card, blackAndWhite = false }, ref) => {
     return (
-      <CardFrame type={card.type} ref={ref}>
+      <CardFrame type={card.type} ref={ref} blackAndWhite={blackAndWhite}>
         {/* Evolution badge */}
         <div className={styles.evolutionBadge}>
           <span>{EVOLUTION_LABELS[card.evolutionStage]}</span>
@@ -33,7 +34,7 @@ export const CardFront = forwardRef<HTMLDivElement, CardFrontProps>(
         </div>
 
         {/* Header: Name + HP */}
-        <CardHeader name={card.name} hp={card.hp} type={card.type} />
+        <CardHeader name={card.name} hp={card.hp} type={card.type} blackAndWhite={blackAndWhite} />
 
         {/* Image */}
         <CardImage imageDataUrl={card.imageDataUrl} name={card.name} />
@@ -56,7 +57,7 @@ export const CardFront = forwardRef<HTMLDivElement, CardFrontProps>(
         {/* Attacks */}
         <div className={styles.attacksContainer}>
           {card.attacks.map((attack, i) => (
-            <AttackRow key={i} attack={attack} />
+            <AttackRow key={i} attack={attack} blackAndWhite={blackAndWhite} />
           ))}
         </div>
 
@@ -65,6 +66,7 @@ export const CardFront = forwardRef<HTMLDivElement, CardFrontProps>(
           weakness={card.weakness}
           resistance={card.resistance}
           retreatCost={card.retreatCost}
+          blackAndWhite={blackAndWhite}
         />
 
         {/* Flavor text */}

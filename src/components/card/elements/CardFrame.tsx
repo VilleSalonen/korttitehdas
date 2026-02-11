@@ -6,10 +6,11 @@ import styles from '../card-styles.module.css'
 interface CardFrameProps {
   type: PokemonType
   children: ReactNode
+  blackAndWhite?: boolean
 }
 
 export const CardFrame = forwardRef<HTMLDivElement, CardFrameProps>(
-  ({ type, children }, ref) => {
+  ({ type, children, blackAndWhite = false }, ref) => {
     const colors = TYPE_COLORS[type]
     return (
       <div
@@ -19,6 +20,9 @@ export const CardFrame = forwardRef<HTMLDivElement, CardFrameProps>(
           '--card-primary': colors.primary,
           '--card-secondary': colors.secondary,
           '--card-light': colors.light,
+          '--card-fill-primary': blackAndWhite ? '#888' : colors.primary,
+          '--card-fill-secondary': blackAndWhite ? '#666' : colors.secondary,
+          '--card-fill-light': blackAndWhite ? '#f0f0f0' : colors.light,
         } as React.CSSProperties}
       >
         {children}

@@ -7,9 +7,10 @@ interface CardFooterProps {
   weakness: TypeModifier | null
   resistance: TypeModifier | null
   retreatCost: number
+  blackAndWhite?: boolean
 }
 
-export function CardFooter({ weakness, resistance, retreatCost }: CardFooterProps) {
+export function CardFooter({ weakness, resistance, retreatCost, blackAndWhite }: CardFooterProps) {
   return (
     <div className={styles.cardFooter}>
       <div className={styles.footerSection}>
@@ -17,7 +18,7 @@ export function CardFooter({ weakness, resistance, retreatCost }: CardFooterProp
         <div className={styles.footerValue}>
           {weakness ? (
             <>
-              <EnergyIcon type={weakness.type} small />
+              <EnergyIcon type={weakness.type} small blackAndWhite={blackAndWhite} />
               <span>{weakness.value}</span>
             </>
           ) : (
@@ -31,7 +32,7 @@ export function CardFooter({ weakness, resistance, retreatCost }: CardFooterProp
         <div className={styles.footerValue}>
           {resistance ? (
             <>
-              <EnergyIcon type={resistance.type} small />
+              <EnergyIcon type={resistance.type} small blackAndWhite={blackAndWhite} />
               <span>{resistance.value}</span>
             </>
           ) : (
@@ -45,7 +46,7 @@ export function CardFooter({ weakness, resistance, retreatCost }: CardFooterProp
         <div className={styles.retreatCostIcons}>
           {retreatCost > 0 ? (
             Array.from({ length: retreatCost }, (_, i) => (
-              <EnergyIcon key={i} type={PokemonType.Colorless} small />
+              <EnergyIcon key={i} type={PokemonType.Colorless} small blackAndWhite={blackAndWhite} />
             ))
           ) : (
             <span style={{ color: '#ccc', fontSize: '18px', fontWeight: 'bold' }}>—</span>

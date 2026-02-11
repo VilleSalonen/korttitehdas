@@ -81,19 +81,33 @@ const backStyles: Record<string, React.CSSProperties> = {
   },
 }
 
-export const CardBack = forwardRef<HTMLDivElement>((_, ref) => {
-  return (
-    <div ref={ref} style={backStyles.frame}>
-      <div style={backStyles.patternOverlay} />
-      <div style={backStyles.centerCircle}>
-        <div style={backStyles.topHalf} />
-        <div style={backStyles.bottomHalf} />
-        <div style={backStyles.centerLine} />
-        <div style={backStyles.centerButton} />
+interface CardBackProps {
+  blackAndWhite?: boolean
+}
+
+export const CardBack = forwardRef<HTMLDivElement, CardBackProps>(
+  ({ blackAndWhite = false }, ref) => {
+    const frameStyle = blackAndWhite
+      ? { ...backStyles.frame, background: 'linear-gradient(135deg, #555 0%, #888 25%, #555 50%, #888 75%, #555 100%)' }
+      : backStyles.frame
+
+    const bottomHalfStyle = blackAndWhite
+      ? { ...backStyles.bottomHalf, background: 'linear-gradient(180deg, #666 0%, #444 100%)' }
+      : backStyles.bottomHalf
+
+    return (
+      <div ref={ref} style={frameStyle}>
+        <div style={backStyles.patternOverlay} />
+        <div style={backStyles.centerCircle}>
+          <div style={backStyles.topHalf} />
+          <div style={bottomHalfStyle} />
+          <div style={backStyles.centerLine} />
+          <div style={backStyles.centerButton} />
+        </div>
+        <div style={backStyles.title}>Korttitehdas</div>
       </div>
-      <div style={backStyles.title}>Korttitehdas</div>
-    </div>
-  )
-})
+    )
+  }
+)
 
 CardBack.displayName = 'CardBack'

@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react'
 import { useCard } from '../../context/CardContext'
+import { usePrintSettings } from '../../context/PrintSettingsContext'
 import { CardFront } from '../card/CardFront'
 import { CardBack } from '../card/CardBack'
 import { exportCardPng } from '../../utils/export-png'
@@ -8,6 +9,7 @@ import { Download, FileText, Printer } from 'lucide-react'
 
 export function ExportPanel() {
   const { card } = useCard()
+  const { blackAndWhite, setBlackAndWhite } = usePrintSettings()
   const frontRef = useRef<HTMLDivElement>(null)
   const backRef = useRef<HTMLDivElement>(null)
   const [exporting, setExporting] = useState<string | null>(null)
@@ -42,6 +44,15 @@ export function ExportPanel() {
 
   return (
     <>
+      <label className="flex items-center gap-2 text-sm text-gray-600 mb-2">
+        <input
+          type="checkbox"
+          checked={blackAndWhite}
+          onChange={(e) => setBlackAndWhite(e.target.checked)}
+          className="rounded border-gray-300"
+        />
+        Mustavalkoinen tulostus
+      </label>
       <div className="flex flex-wrap gap-2 justify-center">
         <button
           onClick={handlePng}
@@ -70,8 +81,8 @@ export function ExportPanel() {
 
       {/* Hidden render targets for export */}
       <div style={{ position: 'absolute', left: '-9999px', top: 0 }}>
-        <CardFront ref={frontRef} card={card} />
-        <CardBack ref={backRef} />
+        <CardFront ref={frontRef} card={card} blackAndWhite={blackAndWhite} />
+        <CardBack ref={backRef} blackAndWhite={blackAndWhite} />
       </div>
     </>
   )

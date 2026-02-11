@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from 'react'
 import { useCard } from '../../context/CardContext'
+import { usePrintSettings } from '../../context/PrintSettingsContext'
 import { CardFront } from './CardFront'
 import { CardBack } from './CardBack'
 
@@ -8,6 +9,7 @@ const CARD_BASE_HEIGHT = 1039
 
 export function CardPreview() {
   const { card } = useCard()
+  const { blackAndWhite } = usePrintSettings()
   const containerRef = useRef<HTMLDivElement>(null)
   const cardFrontRef = useRef<HTMLDivElement>(null)
   const cardBackRef = useRef<HTMLDivElement>(null)
@@ -55,7 +57,7 @@ export function CardPreview() {
             display: showBack ? 'none' : 'block',
           }}
         >
-          <CardFront ref={cardFrontRef} card={card} />
+          <CardFront ref={cardFrontRef} card={card} blackAndWhite={blackAndWhite} />
         </div>
         <div
           style={{
@@ -69,7 +71,7 @@ export function CardPreview() {
             display: showBack ? 'block' : 'none',
           }}
         >
-          <CardBack ref={cardBackRef} />
+          <CardBack ref={cardBackRef} blackAndWhite={blackAndWhite} />
         </div>
       </div>
     </div>
