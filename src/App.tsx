@@ -7,7 +7,7 @@ function App() {
   return (
     <CardProvider>
       <PrintSettingsProvider>
-        <div className="min-h-screen bg-gray-100">
+        <div className="h-screen flex flex-col overflow-hidden bg-gray-100">
           <Header />
           <EditorLayout />
         </div>
