@@ -153,19 +153,19 @@
 }
 
 .attackName {
-  font-size: 22px;
+  font-size: 32px;
   font-weight: bold;
 }
 
 .attackDescription {
-  font-size: 13px;
+  font-size: 22px;
   color: #555;
   margin-top: 2px;
   line-height: 1.3;
 }
 
 .attackDamage {
-  font-size: 28px;
+  font-size: 40px;
   font-weight: bold;
   min-width: 60px;
   text-align: right;
